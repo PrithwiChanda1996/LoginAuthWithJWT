@@ -12,4 +12,4 @@ npm install
 For Dashboard api
 (http://localhost:4000/dashboard?page=1&&keyWord=)
 
-** Page= ** used for pagination and ** keyword= ** for searching any specific kind of users using name or contact number
+**Page=** used for pagination and **keyword=** for searching any specific kind of users using name or contact number
