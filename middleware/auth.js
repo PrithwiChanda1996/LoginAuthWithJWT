@@ -7,7 +7,6 @@ module.exports = async (req, res, next) => {
   const token = req.header("x-auth-token");
 
   const tokenId = await Token.findOne({ token: token });
-  console.log(tokenId);
   //Check if no token
   if (!token || !tokenId) {
     return res.status(401).json({ msg: "No token, authorization denied" });

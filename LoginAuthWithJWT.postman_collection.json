@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "1b1b97dd-8f50-4c63-9d28-1c743efcdf0d",
+		"name": "LoginAuthWithJWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Json content type",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Soma\",\r\n    \"email\": \"somachanda@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"contact\": \"9432116026\",\r\n    \"address\": \"Howrah\",\r\n    \"gender\": \"Female\",\r\n    \"country\": \"India\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "Json content type",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"prithwichanda1996@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authCheck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTkyNTE4MTFjMjE5MjNhOTM2MTVkIn0sImlhdCI6MTYzMTcyMDkwNywiZXhwIjoxNjMxNzI0NTA3fQ.lc26QpcHDYAaXYCCVeag8-qXS4yBW21Os25w2HlFxmw",
+						"description": "Prithwi Token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTkyNTE4MTFjMjE5MjNhOTM2MTVkIn0sImlhdCI6MTYzMTcyMDkwNywiZXhwIjoxNjMxNzI0NTA3fQ.lc26QpcHDYAaXYCCVeag8-qXS4yBW21Os25w2HlFxmw",
+						"description": "Prithwi Token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/dashboard?page=1&&keyWord=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"dashboard"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "keyWord",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTkyNTE4MTFjMjE5MjNhOTM2MTVkIn0sImlhdCI6MTYzMTcyMDkwNywiZXhwIjoxNjMxNzI0NTA3fQ.lc26QpcHDYAaXYCCVeag8-qXS4yBW21Os25w2HlFxmw",
+						"description": "Prithwi Token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

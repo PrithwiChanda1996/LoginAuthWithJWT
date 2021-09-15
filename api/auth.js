@@ -130,7 +130,7 @@ router.post(
       };
 
       let accessToken = jwt.sign(payload, config.get("jwtSecret"), {
-        expiresIn: 20,
+        expiresIn: 3600,
       });
 
       //Token save in
