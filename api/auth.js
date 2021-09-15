@@ -7,6 +7,7 @@ const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
 const User = require("../models/User");
+const Token = require("../models/Token");
 
 //@route    POST api/auth/register
 //@desc     Register user
@@ -63,8 +64,7 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
-
-      res.status(200).send("login");
+      res.status(200).send(user);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
@@ -130,15 +130,28 @@ router.post(
       };
 
       let accessToken = jwt.sign(payload, config.get("jwtSecret"), {
-        expiresIn: 3600,
+        expiresIn: 20,
       });
-      let refreshToken = jwt.sign(payload, config.get("jwtRefreshSecret"));
-      res.json({ accessToken: accessToken, refreshToken: refreshToken });
+
+      //Token save in
+      token = new Token({
+        token: accessToken,
+      });
+      await token.save();
+      res.json({ accessToken: accessToken });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");
     }
   }
 );
+
+//@route    DELETE api/auth
+//@desc     Delete API token
+//@access   Public
+router.delete("/", auth, async (req, res) => {
+  await Token.findOneAndDelete({ token: req.token });
+  res.json({ msg: "Deleted" });
+});
 
 module.exports = router;

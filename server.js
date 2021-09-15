@@ -1,5 +1,4 @@
 const express = require("express");
-const expressLayout = require("express-ejs-layouts");
 const connectDB = require("./config/db");
 const path = require("path");
 
@@ -7,11 +6,6 @@ const app = express();
 
 //Connect Database
 connectDB();
-
-//EJS setup
-app.use(expressLayout);
-app.set("view engine", "ejs");
-
 //Init Middleware
 app.use(express.json({ extended: false }));
 

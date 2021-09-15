@@ -30,25 +30,6 @@ function paginatedResults(model) {
     let token = pages / limit;
     if (token > parseInt(token)) token = parseInt(token) + 1;
 
-    if (endIndex < (await model.countDocuments().exec())) {
-      results.next = {
-        page: page + 1,
-        limit: limit,
-      };
-    } else {
-      results.next = {
-        page: 0,
-        limit: limit,
-      };
-    }
-
-    results.previous = {
-      page: page - 1,
-      limit: limit,
-    };
-
-    results.page = page;
-
     try {
       if (keyWord.length > 0) {
         results.results = await model
@@ -65,14 +46,33 @@ function paginatedResults(model) {
             .skip(startIndex)
             .exec();
         }
-      } else
+      } else {
+        if (endIndex < (await model.countDocuments().exec())) {
+          results.next = {
+            page: page + 1,
+            limit: limit,
+          };
+        } else {
+          results.next = {
+            page: 0,
+            limit: limit,
+          };
+        }
+
+        results.previous = {
+          page: page - 1,
+          limit: limit,
+        };
+
+        results.page = page;
+        results.token = token;
         results.results = await model
           .find()
           .select("-password")
           .limit(limit)
           .skip(startIndex)
           .exec();
-      results.token = token;
+      }
       res.paginatedResults = results;
 
       next();
